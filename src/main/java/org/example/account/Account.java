@@ -1,0 +1,29 @@
+package org.example.account;
+
+public class Account {
+    private final int id;
+    private final int userId;
+    private int moneyAmount;
+
+    public void setMoneyAmount(int moneyAmount) {
+        this.moneyAmount = moneyAmount;
+    }
+
+    public int getMoneyAmount() {
+        return moneyAmount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public Account(int moneyAmount, int id, int userId) {
+        this.moneyAmount = moneyAmount;
+        this.id = id;
+        this.userId = userId;
+    }
+}
