@@ -4,7 +4,6 @@ import org.example.account.Account;
 import org.example.account.AccountService;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.*;
 @Service
 public class UserService {
@@ -12,7 +11,7 @@ public class UserService {
     private final Map<Integer, User> userMap;
     private final Set<String> takenLogins;
     private int idCounter;
-    private AccountService accountService;
+    private final AccountService accountService;
     public UserService(AccountService accountService) {
         userMap = new HashMap<>();
         takenLogins = new HashSet<>();

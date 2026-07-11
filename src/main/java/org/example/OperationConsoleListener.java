@@ -1,10 +1,9 @@
 package org.example;
 
-import org.example.account.AccountService;
+
 import org.example.operations.ConsoleOperationType;
 import org.example.operations.OperationCommandProcessor;
-import org.example.user.User;
-import org.example.user.UserService;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class OperationConsoleListener {
                                 OperationCommandProcessor::getOperationType,
                                 processor -> processor
                         )
-                );;
+                );
     }
 
     public void listen(){

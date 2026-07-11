@@ -52,7 +52,7 @@ public class AccountService {
 
         if (account.getMoneyAmount() < amountToWithdraw) {
             throw new IllegalArgumentException("Cannot withdraw from account: id=%s, moneyAmount=%s, attemptedWithdraw"
-                    .formatted(accountId, account.getMoneyAmount(), amountToWithdraw));
+                    .formatted(accountId, account.getMoneyAmount()));
         }
         account.setMoneyAmount(account.getMoneyAmount()-amountToWithdraw);
     }
@@ -79,7 +79,7 @@ public class AccountService {
         }
         if (accountFrom.getMoneyAmount() < amountToTransfer) {
             throw new IllegalArgumentException("Cannot transfer from account: id=%s, moneyAmount=%s, attemptedWithdraw"
-                    .formatted(accountFrom, accountFrom.getMoneyAmount(), amountToTransfer));
+                    .formatted(accountFrom, accountFrom.getMoneyAmount()));
         }
 
         int totalAmountToDeposit = accountTo.getUserId() != accountFrom.getUserId()
