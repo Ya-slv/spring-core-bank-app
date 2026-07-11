@@ -1,14 +1,27 @@
 package org.example;
 
+import org.example.account.AccountProperties;
 import org.example.account.AccountService;
+import org.example.operations.ConsoleOperationType;
+import org.example.operations.OperationCommandProcessor;
+import org.example.operations.processors.AccountCreateProcessor;
+import org.example.operations.processors.CreateUserProcessor;
+import org.example.operations.processors.ShowAllUsersProcessor;
 import org.example.user.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class ApplicationConfiguration {
 
     @Bean
@@ -19,14 +32,23 @@ public class ApplicationConfiguration {
     @Bean
     public OperationConsoleListener operationConsoleListener(
             Scanner scanner,
-            UserService userService,
-            AccountService accountService){
-        return new OperationConsoleListener(scanner,userService,accountService);
+            List<OperationCommandProcessor> commandProcessorList
+            ){
+        Map<ConsoleOperationType, OperationCommandProcessor> map =
+                commandProcessorList.stream().collect(
+                        Collectors.toMap(
+                                OperationCommandProcessor::getOperationType,
+                                processor -> processor
+                        )
+                );
+        return new OperationConsoleListener(scanner, map);
     }
 
     @Bean
-    public AccountService accountService(){
-        return new AccountService();
+    public AccountService accountService(
+        AccountProperties accountProperties
+    ){
+        return new AccountService(accountProperties);
     }
 
     @Bean

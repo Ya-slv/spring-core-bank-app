@@ -26,4 +26,13 @@ public class User {
         this.login = login;
         this.accountList = accountList;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", accountList=" + accountList +
+                '}';
+    }
 }

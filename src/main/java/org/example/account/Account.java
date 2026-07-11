@@ -26,4 +26,13 @@ public class Account {
         this.id = id;
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", moneyAmount=" + moneyAmount +
+                '}';
+    }
 }

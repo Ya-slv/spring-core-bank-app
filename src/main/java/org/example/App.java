@@ -12,7 +12,10 @@ public class App
     public static void main( String[] args )
     {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("org.example");
-        context.getBean(OperationConsoleListener.class).listen();
+        OperationConsoleListener consoleListener =  context.getBean(OperationConsoleListener.class);
+        consoleListener.start();
+        consoleListener.listen();
+        consoleListener.endListen();
 
     }
 }
