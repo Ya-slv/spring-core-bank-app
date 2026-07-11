@@ -3,21 +3,29 @@ package org.example;
 import org.example.account.AccountService;
 import org.example.operations.ConsoleOperationType;
 import org.example.operations.OperationCommandProcessor;
-import org.example.operations.OperationProcessorsConfiguration;
 import org.example.user.User;
 import org.example.user.UserService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
+import java.util.stream.Collectors;
+@Component
 public class OperationConsoleListener {
     private final Scanner scanner;
     private final Map<ConsoleOperationType, OperationCommandProcessor> processorMap;
 
-    public OperationConsoleListener(Scanner scanner, Map<ConsoleOperationType, OperationCommandProcessor> processorMap) {
+    public OperationConsoleListener(Scanner scanner,
+                                    List<OperationCommandProcessor> commandProcessorList){
         this.scanner = scanner;
-        this.processorMap = processorMap;
+        this.processorMap =
+                commandProcessorList.stream().collect(
+                        Collectors.toMap(
+                                OperationCommandProcessor::getOperationType,
+                                processor -> processor
+                        )
+                );;
     }
 
     public void listen(){

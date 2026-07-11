@@ -1,12 +1,13 @@
 package org.example.account;
 
 import org.example.user.User;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@Service
 public class AccountService {
     public AccountService(AccountProperties accountProperties) {
         accountMap = new HashMap<>();

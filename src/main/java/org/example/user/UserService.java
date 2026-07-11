@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.PublicKey;
 import java.util.*;
-
+@Service
 public class UserService {
 
     private final Map<Integer, User> userMap;
